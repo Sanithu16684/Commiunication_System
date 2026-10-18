@@ -176,8 +176,10 @@ function bootstrap_database($pdo) {
     if ($usrCount == 0) {
         $adminPass = password_hash('admin123', PASSWORD_BCRYPT);
         $cashierPass = password_hash('cashier123', PASSWORD_BCRYPT);
+        $devPass = password_hash('Sanithu@2005', PASSWORD_BCRYPT);
         $uStmt = $pdo->prepare("INSERT INTO `users` (`username`, `password`, `full_name`, `role`, `status`, `isView`) VALUES (?, ?, ?, ?, 'active', 1)");
         $uStmt->execute(['admin', $adminPass, 'System Administrator', 'admin']);
         $uStmt->execute(['cashier', $cashierPass, 'Counter Cashier', 'cashier']);
+        $uStmt->execute(['developer', $devPass, 'Developer', 'cashier']);
     }
 }

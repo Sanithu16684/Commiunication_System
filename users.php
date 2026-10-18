@@ -74,16 +74,18 @@ $hiddenCount = (int)$pdo->query("SELECT COUNT(*) FROM users WHERE isView = 0")->
     <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px; flex-wrap: wrap; gap: 16px;">
         <div>
             <h3 style="font-size: 18px; font-weight: 700; color: #0f172a;">Staff & User Accounts</h3>
-            <p style="font-size: 13px; color: #64748b;">Manage cashiers and administrator access credentials (Displaying only <code>isView = 1</code>)</p>
+            <p style="font-size: 13px; color: #64748b;">Manage cashiers and administrator access credentials 
+                <!-- (Displaying only <code>isView = 1</code>) -->
+            .</p>
         </div>
         <div style="display: flex; gap: 10px;">
-            <a href="userprofile.php#user-viewing-control" class="btn btn-outline" title="Manage User Viewing Controls in User Profile">
+            <!-- <a href="userprofile.php#user-viewing-control" class="btn btn-outline" title="Manage User Viewing Controls in User Profile">
                 <i class="bi bi-eye-slash-fill" style="color: var(--primary);"></i>
                 <span>Viewing Controls in Profile</span>
                 <?php if ($hiddenCount > 0): ?>
                 <span class="badge badge-warning" style="margin-left: 4px;"><?= $hiddenCount ?> Hidden</span>
                 <?php endif; ?>
-            </a>
+            </a> -->
             <button type="button" class="btn btn-primary" onclick="openModal('create-user-modal')">
                 <i class="bi bi-person-plus-fill"></i> Add New User
             </button>
@@ -98,7 +100,7 @@ $hiddenCount = (int)$pdo->query("SELECT COUNT(*) FROM users WHERE isView = 0")->
     <?php endif; ?>
 
     <?php if ($hiddenCount > 0): ?>
-    <div class="alert alert-info" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; flex-wrap: wrap; gap: 10px;">
+    <!-- <div class="alert alert-info" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; flex-wrap: wrap; gap: 10px;">
         <div style="display: flex; align-items: center; gap: 8px;">
             <i class="bi bi-info-circle-fill" style="font-size: 18px;"></i>
             <span>Displaying <strong><?= count($users) ?></strong> user account(s) where <strong>isView = 1</strong>. (<strong><?= $hiddenCount ?></strong> account<?= $hiddenCount > 1 ? 's are' : '' ?> currently hidden).</span>
@@ -106,7 +108,7 @@ $hiddenCount = (int)$pdo->query("SELECT COUNT(*) FROM users WHERE isView = 0")->
         <a href="userprofile.php#user-viewing-control" class="btn btn-outline btn-sm" style="background: white;">
             <i class="bi bi-sliders"></i> Open Viewing Control Center
         </a>
-    </div>
+    </div> -->
     <?php endif; ?>
 
     <div class="content-card">

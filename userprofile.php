@@ -243,8 +243,8 @@ if (is_admin()) {
 
     <!-- Admin Section: USER VIEWING CONTROL CENTER -->
     <?php if (is_admin()): ?>
-    <div id="user-viewing-control" class="content-card">
-        <div class="card-header-flex" style="background: #ffffff; border-bottom: 2px solid var(--border);">
+    <!-- <div id="user-viewing-control" class="content-card"> -->
+        <!-- <div class="card-header-flex" style="background: #ffffff; border-bottom: 2px solid var(--border);">
             <div>
                 <div class="card-title" style="font-size: 17px;">
                     <i class="bi bi-eye-fill" style="color: var(--primary); font-size: 20px;"></i>
@@ -265,12 +265,12 @@ if (is_admin()) {
                 </form>
             </div>
             <?php endif; ?>
-        </div>
+        </div> -->
 
         <!-- Metrics & Filter Bar -->
-        <div style="padding: 16px 24px; background: #f8fafc; border-bottom: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px;">
+        <!-- <div style="padding: 16px 24px; background: #f8fafc; border-bottom: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px;"> -->
             <!-- Filter Pills -->
-            <div style="display: flex; gap: 8px; flex-wrap: wrap;" id="view-filter-buttons">
+            <!-- <div style="display: flex; gap: 8px; flex-wrap: wrap;" id="view-filter-buttons">
                 <button type="button" class="btn btn-sm btn-primary" onclick="filterViewingTable('all', this)">
                     All Users (<?= $totalUsersCount ?>)
                 </button>
@@ -282,17 +282,17 @@ if (is_admin()) {
                     <i class="bi bi-eye-slash-fill" style="color: #f59e0b;"></i>
                     Hidden Only (<?= $hiddenCount ?>)
                 </button>
-            </div>
+            </div> -->
 
             <!-- Quick Search Input -->
-            <div style="position: relative; max-width: 280px; width: 100%;">
+            <!-- <div style="position: relative; max-width: 280px; width: 100%;">
                 <i class="bi bi-search" style="position: absolute; left: 12px; top: 50%; transform: translateY(-50%); color: #94a3b8; font-size: 13px;"></i>
                 <input type="text" id="user-view-search" class="form-control form-control-sm" placeholder="Search staff by name or username..." style="padding-left: 32px; font-size: 13px;" onkeyup="searchViewingTable()">
-            </div>
-        </div>
+            </div> -->
+        <!-- </div> -->
 
         <!-- User Viewing Control Table -->
-        <div class="table-responsive">
+        <!-- <div class="table-responsive">
             <table class="custom-table" id="viewing-control-table">
                 <thead>
                     <tr>
@@ -380,9 +380,9 @@ if (is_admin()) {
                     <?php endforeach; ?>
                 </tbody>
             </table>
-        </div>
+        </div> -->
 
-        <div style="padding: 16px 24px; background: #fafbfc; border-top: 1px solid var(--border); font-size: 13px; color: #475569; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 10px;">
+        <!-- <div style="padding: 16px 24px; background: #fafbfc; border-top: 1px solid var(--border); font-size: 13px; color: #475569; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 10px;">
             <div>
                 <i class="bi bi-info-circle-fill" style="color: var(--primary); margin-right: 6px;"></i>
                 <strong>Notice:</strong> The <a href="users.php" style="color: var(--primary); font-weight: 600; text-decoration: underline;">User Accounts</a> page strictly displays accounts where <code>isView = 1</code>.
@@ -390,8 +390,8 @@ if (is_admin()) {
             <a href="users.php" class="btn btn-outline btn-sm">
                 <i class="bi bi-arrow-right"></i> Go to User Accounts
             </a>
-        </div>
-    </div>
+        </div> -->
+    <!-- </div> -->
     <?php endif; ?>
 
 </div>
