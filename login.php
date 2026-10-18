@@ -62,7 +62,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <link rel="stylesheet" href="assets/css/style.css">
     <!-- Security: Developer Tools Blocker -->
-    <script src="assets/js/anti-devtools.js?v=2.1"></script>
+    <script src="assets/js/anti-devtools.js?v=3.0"></script>
     <style>
         body {
             min-height: 100vh;
@@ -179,7 +179,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         </button>
     </form>
 
-    <div class="demo-roles-box">
+    <!-- <div class="demo-roles-box">
         <p><i class="bi bi-lightning-charge-fill" style="color: #f59e0b;"></i> Quick Fill Demo Accounts:</p>
         <button type="button" class="quick-fill-btn" onclick="fillCreds('admin', 'admin123')">
             <i class="bi bi-shield-check"></i> Admin (admin / admin123)
@@ -187,7 +187,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <button type="button" class="quick-fill-btn" onclick="fillCreds('cashier', 'cashier123')">
             <i class="bi bi-cash-stack"></i> Cashier (cashier / cashier123)
         </button>
-    </div>
+    </div> -->
 </div>
 
 <script>

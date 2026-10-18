@@ -203,20 +203,107 @@
     }
     silenceConsole();
 
-    // 5. Dynamic Anti-Debugger Lock Loop
-    // When Developer Tools is closed: executes in < 0.001ms with NO effect on UI or performance.
-    // When Developer Tools is manually opened (via browser menu): browser automatically halts 
-    // at the debugger keyword, freezing the console prompt and blocking inspection.
+    // 5. Active DevTools Detection & Fullscreen Lockdown Screen
+    let devToolsOpen = false;
+    let lockdownOverlay = null;
+
+    function createLockdownOverlay() {
+        if (lockdownOverlay) return lockdownOverlay;
+        lockdownOverlay = document.createElement('div');
+        lockdownOverlay.id = 'devtools-lockdown-overlay';
+        lockdownOverlay.style.cssText = [
+            'position: fixed',
+            'top: 0',
+            'left: 0',
+            'width: 100vw',
+            'height: 100vh',
+            'background: rgba(15, 23, 42, 0.96)',
+            'backdrop-filter: blur(14px)',
+            '-webkit-backdrop-filter: blur(14px)',
+            'z-index: 2147483647',
+            'display: flex',
+            'flex-direction: column',
+            'align-items: center',
+            'justify-content: center',
+            'color: #ffffff',
+            'font-family: -apple-system, BlinkMacSystemFont, "Plus Jakarta Sans", "Segoe UI", Roboto, sans-serif',
+            'text-align: center',
+            'padding: 24px',
+            'box-sizing: border-box'
+        ].join(';');
+
+        lockdownOverlay.innerHTML = [
+            '<div style="max-width: 480px; background: #1e293b; border: 1px solid #ef4444; border-radius: 18px; padding: 36px 28px; box-shadow: 0 25px 50px -12px rgba(239, 68, 68, 0.25);">',
+            '  <div style="width: 64px; height: 64px; border-radius: 50%; background: rgba(239, 68, 68, 0.15); color: #ef4444; font-size: 32px; display: inline-flex; align-items: center; justify-content: center; margin-bottom: 18px;">🛡️</div>',
+            '  <h2 style="font-size: 20px; font-weight: 800; margin: 0 0 10px 0; color: #ffffff; letter-spacing: -0.02em;">Developer Tools Detected</h2>',
+            '  <p style="font-size: 13.5px; color: #cbd5e1; line-height: 1.6; margin: 0 0 20px 0;">',
+            '    Access to browser inspection tools (DevTools) is strictly prohibited on this POS terminal.',
+            '    <br><strong style="color: #f87171;">Please close Developer Tools</strong> to resume system operation.',
+            '  </p>',
+            '  <div style="font-size: 12px; color: #94a3b8; border-top: 1px solid #334155; padding-top: 14px;">',
+            '    Terminal protected by Metro POS Security Engine',
+            '  </div>',
+            '</div>'
+        ].join('');
+
+        return lockdownOverlay;
+    }
+
+    function onDevToolsStateChange(isOpen) {
+        if (devToolsOpen === isOpen || isPrinting) return;
+        devToolsOpen = isOpen;
+
+        const target = document.body || document.documentElement;
+        if (!target) return;
+
+        if (isOpen) {
+            const overlay = createLockdownOverlay();
+            if (!document.getElementById('devtools-lockdown-overlay')) {
+                target.appendChild(overlay);
+            }
+            // Freeze inspection console
+            executeDebuggerTrap();
+        } else {
+            const existing = document.getElementById('devtools-lockdown-overlay');
+            if (existing && existing.parentNode) {
+                existing.parentNode.removeChild(existing);
+            }
+        }
+    }
+
+    // Dimension delta detection (docked DevTools check)
+    function checkDimensions() {
+        if (isPrinting) return;
+        const widthThreshold = window.outerWidth - window.innerWidth > 160;
+        const heightThreshold = window.outerHeight - window.innerHeight > 160;
+        
+        if (widthThreshold || heightThreshold) {
+            onDevToolsStateChange(true);
+        } else {
+            onDevToolsStateChange(false);
+        }
+    }
+
+    // 6. Dynamic Anti-Debugger Lock Loop & Timing Detection
     function executeDebuggerTrap() {
         if (isPrinting) return;
+        const startTime = Date.now();
         try {
             (function () {
                 return false;
             }['constructor']('debugger')());
         } catch (e) {}
+        const duration = Date.now() - startTime;
+        if (duration > 100) {
+            // Debugger paused: DevTools is actively open
+            onDevToolsStateChange(true);
+        }
     }
 
-    // Run debugger trap regularly to catch manual console opening
-    setInterval(executeDebuggerTrap, 200);
+    // Check periodically
+    window.addEventListener('resize', checkDimensions);
+    setInterval(checkDimensions, 500);
+    setInterval(executeDebuggerTrap, 300);
 
 })();
+

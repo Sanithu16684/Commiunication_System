@@ -35,7 +35,7 @@ $currency = $settings['currency_symbol'] ?? 'Rs.';
     <link rel="stylesheet" href="assets/css/pos.css?v=<?= filemtime(__DIR__ . '/../assets/css/pos.css') ?>">
     <?php endif; ?>
     <!-- Security: Developer Tools Blocker -->
-    <script src="assets/js/anti-devtools.js?v=2.1"></script>
+    <script src="assets/js/anti-devtools.js?v=3.0"></script>
 </head>
 <body>
 <div class="app-wrapper">

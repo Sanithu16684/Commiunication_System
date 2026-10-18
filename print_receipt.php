@@ -49,7 +49,7 @@ $storeLogo = $settings['store_logo'] ?? '';
     <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700;800&family=Plus+Jakarta+Sans:wght@400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <!-- Security: Developer Tools Blocker -->
-    <script src="assets/js/anti-devtools.js?v=2.1"></script>
+    <script src="assets/js/anti-devtools.js?v=3.0"></script>
     <style>
         * {
             box-sizing: border-box;
