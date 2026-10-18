@@ -1,14 +1,13 @@
 -- ============================================================
 -- Metro POS & Communication System - Database Backup
 -- Database: `comm_bookshop_pos`
--- Generated: 2026-10-17 07:57:19
+-- Generated: 2026-10-18 05:21:32
 -- Tables Count: 9
 -- ============================================================
 
 SET FOREIGN_KEY_CHECKS = 0;
 SET SQL_MODE = 'NO_AUTO_VALUE_ON_ZERO';
-SET AUTOCOMMIT = 0;
-START TRANSACTION;
+SET AUTOCOMMIT = 1;
 SET NAMES utf8mb4;
 
 -- ------------------------------------------------------------
@@ -24,18 +23,11 @@ CREATE TABLE `activity_logs` (
   `ip_address` varchar(45) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `created_at` datetime DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Dumping data for `activity_logs` (8 rows)
+-- Dumping data for `activity_logs` (1 rows)
 INSERT INTO `activity_logs` (`id`, `user_id`, `action`, `module`, `details`, `ip_address`, `created_at`) VALUES
-  ('1', '1', 'Cleared All Data', 'System', 'Cleared all operational data. User accounts and store settings were preserved. Safety snapshot: safety_snapshot_before_clear_data_2026-10-17_074748.sql', '::1', '2026-10-17 11:17:48'),
-  ('2', '1', 'User Login', 'Auth', 'User admin logged in successfully', '::1', '2026-10-17 11:18:14'),
-  ('3', '3', 'Deleted Backup', 'Backup', 'Deleted backup file: safety_snapshot_before_restore_2026-10-17_065526.sql', '::1', '2026-10-17 11:19:22'),
-  ('4', '3', 'Deleted Backup', 'Backup', 'Deleted backup file: safety_snapshot_before_clear_data_2026-10-17_074748.sql', '::1', '2026-10-17 11:19:25'),
-  ('5', '1', 'User Login', 'Auth', 'User admin logged in successfully', '::1', '2026-10-17 11:20:25'),
-  ('6', '1', 'Created Backup', 'Backup', 'Created local backup: backup_comm_bookshop_pos_2026-10-17_075025.sql', '::1', '2026-10-17 11:20:25'),
-  ('7', '3', 'Deleted Backup', 'Backup', 'Deleted backup file: backup_comm_bookshop_pos_2026-10-17_065506.sql', '::1', '2026-10-17 11:20:59'),
-  ('9', '1', 'User Login', 'Auth', 'User admin logged in successfully', '::1', '2026-10-17 11:27:18');
+  ('1', '1', 'Cleared All Data', 'System', 'Cleared all operational data. User accounts and store settings were preserved. Safety snapshot: safety_snapshot_before_clear_data_2026-10-18_052120.sql', '::1', '2026-10-18 08:51:20');
 
 -- ------------------------------------------------------------
 -- Table structure for `categories`
@@ -205,6 +197,5 @@ INSERT INTO `users` (`id`, `username`, `password`, `full_name`, `role`, `status`
   ('2', 'cashier', '$2y$10$eNI.OZvVlbVo3MWjuWlka.OJP1GlPNhl8jvwhjE7igrSJK3UjFxTC', 'Counter Cashier', 'cashier', 'active', '1', '2026-10-09 13:13:44'),
   ('3', 'developer', '$2y$10$quHiivtsoUp098bmpXjxg.zErmUYJtL6N9BatdpdrfXkBZyi0wOrS', 'Sanithu', 'admin', 'active', '0', '2026-10-09 20:42:37');
 
-COMMIT;
 SET FOREIGN_KEY_CHECKS = 1;
 -- [End of Database Backup Dump]
