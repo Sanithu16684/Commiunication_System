@@ -39,6 +39,7 @@ $storePhone = $settings['store_phone'] ?? '';
 $storeAddress = $settings['store_address'] ?? '';
 $receiptFooter = $settings['receipt_footer'] ?? 'Thank you for your visit! Goods once sold cannot be returned without receipt.';
 $currency = $settings['currency_symbol'] ?? 'Rs.';
+$storeLogo = $settings['store_logo'] ?? '';
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -264,6 +265,11 @@ $currency = $settings['currency_symbol'] ?? 'Rs.';
 
 <div class="receipt-container">
     <div class="receipt-header">
+        <?php if (!empty($storeLogo) && file_exists(__DIR__ . '/' . $storeLogo)): ?>
+        <div class="receipt-logo-wrap" style="text-align: center; margin-bottom: 8px;">
+            <img src="<?= htmlspecialchars($storeLogo) ?>" alt="Store Logo" class="receipt-logo-img" style="max-height: <?= $format === 'a4' ? '70px' : '48px' ?>; max-width: <?= $format === 'a4' ? '220px' : '150px' ?>; object-fit: contain; <?= $format === 'thermal' ? 'filter: grayscale(100%) contrast(130%);' : '' ?>">
+        </div>
+        <?php endif; ?>
         <h1><?= htmlspecialchars($storeName) ?></h1>
         <p><?= htmlspecialchars($storeTagline) ?></p>
         <?php if ($storeAddress): ?><p><?= htmlspecialchars($storeAddress) ?></p><?php endif; ?>
